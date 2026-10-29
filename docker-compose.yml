@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  governance-app:
+    build: .
+    container_name: dataset-governance
+    ports:
+      - "8000:8000"
+    environment:
+      - DATASET_GOV_DATA_DIR=/app/data
+      - SECRET_KEY=prod-ready-secret-governance-key
+      - MAX_UPLOAD_SIZE_BYTES=209715200
+    volumes:
+      - gov_data:/app/data
+    restart: unless-stopped
+
+volumes:
+  gov_data:
